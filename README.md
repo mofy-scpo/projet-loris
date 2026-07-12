@@ -2,7 +2,7 @@
 
 Tableau de bord cartographique et statistique des établissements scolaires fermés en France, à partir de la base publique de la DEPP (Ministère de l'Éducation nationale).
 
-**🔗 Site en ligne :** https://mofy-scpo.github.io/projet-loris/
+**🔗 Site en ligne :** https://MarcOFlaherty.github.io/projet-loris/
 
 ## Fonctionnalités
 
