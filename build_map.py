@@ -165,6 +165,27 @@ def main():
         var regLayer = {regions_layer.get_name()};
         var deptLayer = {depts_layer.get_name()};
         var activeMarker = null;
+        var DEFAULT_CENTER = [46.2276, 2.2137];
+        var DEFAULT_ZOOM = 6;
+
+        // Recalage de la taille de la carte : Leaflet mesure son conteneur au
+        // moment de l'initialisation, or l'iframe peut encore être en cours
+        // de mise en page (flex/CSS) à cet instant précis. Sans ce recalage,
+        // la carte se retrouve figée à une taille/centrage erronés (grand
+        // espace vide sur un côté). On invalide et recentre à plusieurs
+        // reprises pour couvrir aussi bien le layout initial que les
+        // redimensionnements ultérieurs (resize navigateur, chargement de
+        // police modifiant les dimensions du conteneur).
+        function fixMapSize() {{
+            mapObj.invalidateSize();
+            mapObj.setView(DEFAULT_CENTER, DEFAULT_ZOOM);
+        }}
+        fixMapSize();
+        setTimeout(fixMapSize, 300);
+        setTimeout(fixMapSize, 1000);
+        window.addEventListener('resize', function() {{
+            mapObj.invalidateSize();
+        }});
 
         // Fonction d'envoi du message au parent
         function sendSelection(level, props, bounds) {{
